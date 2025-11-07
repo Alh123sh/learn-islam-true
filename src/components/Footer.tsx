@@ -90,8 +90,11 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Islamic Learning Hub. All content is based on authentic Qur'an and Sunnah.</p>
-          <p className="mt-2">Verified from trusted sources: Sahih Bukhari, Sahih Muslim, Tirmidhi, and other authentic collections.</p>
+          <p>© {new Date().getFullYear()} Islamic Learning Hub. All content is verified from authentic sources.</p>
+          <p className="mt-2">The Qur'an, Sahih al-Bukhari, Sahih Muslim, Tirmidhi, Abu Dawud, and recognized scholarly works.</p>
+          <p className="mt-3 text-primary font-arabic text-base" dir="rtl">
+            اللهم علمنا ما ينفعنا وانفعنا بما علمتنا وزدنا علماً
+          </p>
         </div>
       </div>
     </footer>

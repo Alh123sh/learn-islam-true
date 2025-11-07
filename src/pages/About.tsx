@@ -40,14 +40,14 @@ const About = () => {
               <h2 className="text-2xl font-bold">About the Founder</h2>
             </div>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              My name is Shueyb, and I'm both a student of Islam and a web developer. Like many Muslims, I found myself 
-              seeking reliable, authentic sources to deepen my understanding of Islam. As I learned, I realized the 
-              importance of going back to the original sources - the Qur'an and Sunnah.
+              This website is developed by <strong>Shueyb</strong>, a pharmacist, product developer, and student of knowledge. 
+              Like many Muslims, he found himself seeking reliable, authentic sources to deepen his understanding of Islam. 
+              As he learned, he realized the importance of going back to the original sources - the Qur'an and Sunnah.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Combining my passion for Islamic knowledge with my technical skills, I created this platform to help others 
-              on their learning journey. My goal is to present Islamic teachings in a clear, organized, and accessible way, 
-              making it easier for everyone to learn and practice Islam as taught by the Prophet Muhammad ﷺ.
+              His mission is to combine technology and authentic Islamic education to spread beneficial knowledge worldwide. 
+              By presenting Islamic teachings in a clear, organized, and accessible way, he aims to make it easier for 
+              everyone to learn and practice Islam as taught by the Prophet Muhammad ﷺ.
             </p>
           </Card>
 

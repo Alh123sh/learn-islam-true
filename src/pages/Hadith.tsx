@@ -11,9 +11,9 @@ const Hadith = () => {
         narrator: "Uthman ibn Affan (RA)",
       },
       {
-        hadith: "Prayer is the pillar of religion.",
-        reference: "Sunan al-Bayhaqi 2668",
-        narrator: "Umar ibn al-Khattab (RA)",
+        hadith: "The most beloved deeds to Allah are those that are consistent, even if small.",
+        reference: "Sahih al-Bukhari 6464, Sahih Muslim 783",
+        narrator: "Aisha (RA)",
       },
     ],
     manners: [
@@ -23,14 +23,14 @@ const Hadith = () => {
         narrator: "Anas ibn Malik (RA)",
       },
       {
-        hadith: "The strong person is not the one who can overpower others. Rather, the strong person is the one who controls himself when he is angry.",
-        reference: "Sahih al-Bukhari 6114, Sahih Muslim 2609",
+        hadith: "The believer is the one from whose tongue and hand the people are safe.",
+        reference: "Jami' at-Tirmidhi 2627",
         narrator: "Abu Hurairah (RA)",
       },
       {
-        hadith: "The most beloved of people to Allah are those who are most beneficial to people.",
-        reference: "Al-Mu'jam al-Awsat 6192",
-        narrator: "Jabir ibn Abdullah (RA)",
+        hadith: "A true Muslim is one from whose tongue and hands others are safe.",
+        reference: "Sahih al-Bukhari 10",
+        narrator: "Abdullah ibn Amr (RA)",
       },
     ],
     patience: [
@@ -47,17 +47,17 @@ const Hadith = () => {
     ],
     family: [
       {
-        hadith: "The best of you are those who are best to their families, and I am the best of you to my family.",
+        hadith: "The one who does not show mercy will not be shown mercy.",
+        reference: "Sahih al-Bukhari 6013",
+        narrator: "Abu Hurairah (RA)",
+      },
+      {
+        hadith: "The best of you are those who are best to their families.",
         reference: "Jami' at-Tirmidhi 3895",
         narrator: "Aisha (RA)",
       },
       {
-        hadith: "When a man calls his wife to his bed and she refuses, and he spends the night angry with her, the angels curse her until morning.",
-        reference: "Sahih al-Bukhari 5193, Sahih Muslim 1436",
-        narrator: "Abu Hurairah (RA)",
-      },
-      {
-        hadith: "The most perfect of believers in faith are those who are best in character, and the best of you are those who are best to their women.",
+        hadith: "The most complete of believers in faith are those best in character.",
         reference: "Jami' at-Tirmidhi 1162",
         narrator: "Abu Hurairah (RA)",
       },

@@ -26,9 +26,12 @@ const Quran = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Memorize the Qur'an with Consistency</h1>
-          <p className="text-lg text-muted-foreground mb-6">
-            Structured memorization plans with tips from scholars and weekly tracking
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Memorize the Qur'an — 6-Month Journey</h1>
+          <p className="text-lg text-muted-foreground mb-4">
+            Our structured 6-month plan helps you memorize the Qur'an deeply — with focus on <strong>mutashabihat (similar verses)</strong> so you avoid confusion between them.
+          </p>
+          <p className="text-muted-foreground mb-6">
+            Each week includes: daily schedule with review sections, tafsir and context of verses, mutashabihat highlighting, memorization tracker, and dua for knowledge.
           </p>
           <Card className="p-6 bg-primary/10 border-primary/30">
             <p className="text-lg font-semibold">
@@ -36,6 +39,14 @@ const Quran = () => {
             </p>
             <p className="text-sm text-muted-foreground mt-2">
               — Prophet Muhammad ﷺ (Sahih al-Bukhari 4937)
+            </p>
+          </Card>
+          <Card className="mt-6 p-6 bg-accent/5 border-accent/20">
+            <p className="text-right text-muted-foreground mb-2" dir="rtl">
+              خطّة منظّمة لحفظ القرآن الكريم في ستة أشهر، مع التركيز على المتشابهات لتجنّب الخلط بينها.
+            </p>
+            <p className="text-right text-sm text-muted-foreground" dir="rtl">
+              تشمل الخطة اليومية: المراجعة، تفسير الآيات، جدول الحفظ، والدعاء بالتوفيق.
             </p>
           </Card>
         </div>

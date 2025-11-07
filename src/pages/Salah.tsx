@@ -106,8 +106,8 @@ const Salah = () => {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">How the Prophet ﷺ Prayed</h1>
-          <p className="text-lg text-muted-foreground">
-            A step-by-step guide with authentic references from Sahih al-Bukhari and Sahih Muslim
+          <p className="text-lg text-muted-foreground mb-4">
+            Learn every detail of Salah from the authentic Hadith — from the intention (niyyah) to the final taslim. Each step includes Arabic text, English meaning, transliteration, and the correct posture.
           </p>
           <Card className="mt-6 p-6 bg-accent/10 border-accent/30">
             <p className="text-lg font-semibold text-accent-foreground">
@@ -115,6 +115,14 @@ const Salah = () => {
             </p>
             <p className="text-sm text-muted-foreground mt-2">
               — Prophet Muhammad ﷺ (Sahih al-Bukhari 631)
+            </p>
+          </Card>
+          <Card className="mt-6 p-6 bg-primary/5 border-primary/20">
+            <p className="text-right text-muted-foreground mb-2" dir="rtl">
+              تعلّم كل جزء من الصلاة اعتمادًا على الأحاديث الصحيحة — من النية إلى التسليم.
+            </p>
+            <p className="text-right text-sm text-muted-foreground" dir="rtl">
+              يتضمّن الدليل: النية، الوضوء، التكبير، الركوع، السجود، التشهّد، والتسليم، مع النص العربي والترجمة والصور التوضيحية.
             </p>
           </Card>
         </div>

@@ -60,10 +60,10 @@ const Duas = () => {
   const specialDuas = [
     {
       title: "For Anxiety & Worry",
-      arabic: "اللَّهُمَّ إِنِّي عَبْدُكَ، ابْنُ عَبْدِكَ، ابْنُ أَمَتِكَ، نَاصِيَتِي بِيَدِكَ، مَاضٍ فِيَّ حُكْمُكَ، عَدْلٌ فِيَّ قَضَاؤُكَ",
-      transliteration: "Allahumma inni 'abduka, ibnu 'abdika, ibnu amatika, nasiyati biyadika, madin fiyya hukmuka, 'adlun fiyya qada'uka",
-      translation: "O Allah, I am Your servant, son of Your servant, son of Your maidservant. My forelock is in Your hand, Your command over me is forever executed and Your decree over me is just.",
-      reference: "Musnad Ahmad 3712",
+      arabic: "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الهَمِّ وَالْحَزَنِ",
+      transliteration: "Allahumma inni a'udhu bika minal-hammi wal-hazan",
+      translation: "O Allah, I seek refuge in You from anxiety and grief.",
+      reference: "Sahih al-Bukhari 6369",
     },
     {
       title: "For Forgiveness",

@@ -22,9 +22,20 @@ const Home = () => {
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
               Learn Islam the Authentic Way
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8">
-              Master Salah, memorize the Qur'an, learn daily Duas, and study authentic Hadith from verified sources.
+            <p className="text-xl md:text-2xl text-white/90 mb-6">
+              Welcome to <strong>Islamic Learning Hub</strong>, a peaceful place where you can explore the beauty of Islam through the <strong>Qur'an</strong>, <strong>authentic Hadith</strong>, and the teachings of the Prophet Muhammad ﷺ.
             </p>
+            <p className="text-lg md:text-xl text-white/80 mb-8">
+              Our mission is to help you worship Allah with knowledge, sincerity, and love — just as the Prophet ﷺ taught his companions.
+            </p>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-8 border border-white/20">
+              <p className="text-xl md:text-2xl text-white text-right font-semibold mb-2" dir="rtl">
+                تعلّم الإسلام على الطريقة الصحيحة
+              </p>
+              <p className="text-sm md:text-base text-white/90 text-right" dir="rtl">
+                مرحبًا بك في مركز التعلم الإسلامي، مكان هادئ تتعرّف فيه على جمال الإسلام من خلال القرآن الكريم والأحاديث النبوية الصحيحة وتعاليم النبي محمد ﷺ.
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8">
                 Start Learning
