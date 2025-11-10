@@ -19,6 +19,11 @@ export default {
         inter: ["Inter", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
       },
+      boxShadow: {
+        soft: "var(--shadow-soft)",
+        hover: "var(--shadow-hover)",
+        glow: "var(--shadow-glow)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
