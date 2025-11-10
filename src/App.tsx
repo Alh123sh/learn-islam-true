@@ -8,6 +8,8 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import PWAInstallPrompt from "./components/PWAInstallPrompt";
+import ParticleBackground from "./components/ParticleBackground";
+import IslamicPattern from "./components/IslamicPattern";
 import Home from "./pages/Home";
 import Salah from "./pages/Salah";
 import Duas from "./pages/Duas";
@@ -26,21 +28,25 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <div className="flex flex-col min-h-screen islamic-pattern">
-              <Navigation />
-              <main className="flex-1">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/salah" element={<Salah />} />
-                  <Route path="/duas" element={<Duas />} />
-                  <Route path="/quran" element={<Quran />} />
-                  <Route path="/hadith" element={<Hadith />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
-              <Footer />
-              <PWAInstallPrompt />
+            <div className="flex flex-col min-h-screen relative">
+              <ParticleBackground />
+              <IslamicPattern />
+              <div className="relative z-10 flex flex-col min-h-screen paper-texture">
+                <Navigation />
+                <main className="flex-1">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/salah" element={<Salah />} />
+                    <Route path="/duas" element={<Duas />} />
+                    <Route path="/quran" element={<Quran />} />
+                    <Route path="/hadith" element={<Hadith />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </main>
+                <Footer />
+                <PWAInstallPrompt />
+              </div>
             </div>
           </BrowserRouter>
         </TooltipProvider>

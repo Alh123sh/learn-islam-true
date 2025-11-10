@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import DailyVerse from "@/components/DailyVerse";
+import TypewriterText from "@/components/TypewriterText";
 import { BookOpen, Heart, Users, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -46,7 +47,10 @@ const Home = () => {
               className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
               variants={fadeInUp}
             >
-              {isArabic ? "تعلّم الإسلام على الطريقة الصحيحة" : "Learn Islam the Authentic Way"}
+              <TypewriterText 
+                text={isArabic ? "تعلّم الإسلام على الطريقة الصحيحة" : "Learn Islam the Authentic Way"}
+                delay={80}
+              />
             </motion.h1>
             
             <motion.p 
@@ -155,7 +159,7 @@ const Home = () => {
         >
           <motion.div variants={fadeInUp}>
             <Link to="/salah">
-              <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer h-full">
+              <Card className="p-6 hover-lift cursor-pointer h-full border-2 border-transparent hover:border-primary/20 hover:shadow-glow">
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <BookOpen className="h-6 w-6 text-primary" />
@@ -176,7 +180,7 @@ const Home = () => {
 
           <motion.div variants={fadeInUp}>
             <Link to="/duas">
-              <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer h-full">
+              <Card className="p-6 hover-lift cursor-pointer h-full border-2 border-transparent hover:border-secondary/30 hover:shadow-glow">
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
                     <Heart className="h-6 w-6 text-accent" />
@@ -197,7 +201,7 @@ const Home = () => {
 
           <motion.div variants={fadeInUp}>
             <Link to="/quran">
-              <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer h-full">
+              <Card className="p-6 hover-lift cursor-pointer h-full border-2 border-transparent hover:border-primary/20 hover:shadow-glow">
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <Sparkles className="h-6 w-6 text-primary" />
@@ -218,7 +222,7 @@ const Home = () => {
 
           <motion.div variants={fadeInUp}>
             <Link to="/hadith">
-              <Card className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer h-full">
+              <Card className="p-6 hover-lift cursor-pointer h-full border-2 border-transparent hover:border-accent/30 hover:shadow-glow">
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
                     <Users className="h-6 w-6 text-accent" />
@@ -247,7 +251,7 @@ const Home = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <Card className="p-8 md:p-12 bg-gradient-to-br from-primary to-accent text-white">
+        <Card className="p-8 md:p-12 gold-gradient text-white border-2 border-secondary/20 shadow-glow">
           <blockquote className="text-center space-y-4">
             <p className="text-2xl md:text-3xl font-semibold italic">
               {isArabic 
