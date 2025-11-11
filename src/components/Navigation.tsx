@@ -12,10 +12,11 @@ const Navigation = () => {
 
   const navLinks = [
     { to: "/", label: isArabic ? "الرئيسية" : "Home" },
-    { to: "/salah", label: isArabic ? "الصلاة" : "Learn Salah" },
-    { to: "/duas", label: isArabic ? "الأدعية" : "Duas & Adhkar" },
-    { to: "/quran", label: isArabic ? "القرآن" : "Quran Memorization" },
-    { to: "/hadith", label: isArabic ? "الحديث" : "Hadith Corner" },
+    { to: "/salah", label: isArabic ? "الصلاة" : "Salah" },
+    { to: "/wudu", label: isArabic ? "الوضوء" : "Wudu" },
+    { to: "/duas", label: isArabic ? "الأدعية" : "Duas" },
+    { to: "/quran", label: isArabic ? "القرآن" : "Quran" },
+    { to: "/hadith", label: isArabic ? "الحديث" : "Hadith" },
     { to: "/about", label: isArabic ? "عن الموقع" : "About" },
   ];
 

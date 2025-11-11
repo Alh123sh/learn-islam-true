@@ -12,6 +12,7 @@ import ParticleBackground from "./components/ParticleBackground";
 import IslamicPattern from "./components/IslamicPattern";
 import Home from "./pages/Home";
 import Salah from "./pages/Salah";
+import Wudu from "./pages/Wudu";
 import Duas from "./pages/Duas";
 import Quran from "./pages/Quran";
 import Hadith from "./pages/Hadith";
@@ -34,15 +35,16 @@ const App = () => (
               <div className="relative z-10 flex flex-col min-h-screen paper-texture">
                 <Navigation />
                 <main className="flex-1">
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/salah" element={<Salah />} />
-                    <Route path="/duas" element={<Duas />} />
-                    <Route path="/quran" element={<Quran />} />
-                    <Route path="/hadith" element={<Hadith />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/salah" element={<Salah />} />
+              <Route path="/wudu" element={<Wudu />} />
+              <Route path="/duas" element={<Duas />} />
+              <Route path="/quran" element={<Quran />} />
+              <Route path="/hadith" element={<Hadith />} />
+              <Route path="/about" element={<About />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
                 </main>
                 <Footer />
                 <PWAInstallPrompt />
