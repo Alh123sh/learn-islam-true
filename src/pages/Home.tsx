@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { BookOpen, Compass, Heart, MessageCircle, Droplets } from "lucide-react";
 import DailyVerse from "@/components/DailyVerse";
 import PrayerTimes from "@/components/PrayerTimes";
 import QiblaCompass from "@/components/QiblaCompass";
-import TypewriterText from "@/components/TypewriterText";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-bg.jpg";
@@ -48,32 +48,56 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-accent/90" />
         </div>
         
         <motion.div 
-          className="relative z-10 text-center px-4 max-w-4xl mx-auto"
+          className="relative z-10 text-center px-4 max-w-5xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            <TypewriterText 
-              text={isArabic ? "تعلّم الإسلام على الطريقة الصحيحة" : "Learn Islam In the Authentic Way"}
-              delay={80}
-            />
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="mb-8"
+          >
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 drop-shadow-lg">
+              {isArabic ? "تعلّم الإسلام الأصيل" : "Learn Authentic Islam"}
+            </h1>
+            <div className="h-1 w-32 mx-auto bg-gradient-to-r from-secondary via-secondary/80 to-transparent rounded-full" />
+          </motion.div>
+          
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="text-2xl md:text-3xl text-white/95 max-w-3xl mx-auto mb-8 drop-shadow"
+          >
             {isArabic 
-              ? "مرحبًا بك في مركز التعلم الإسلامي، مكان هادئ تتعرّف فيه على جمال الإسلام من خلال القرآن الكريم والأحاديث النبوية الصحيحة"
-              : "Welcome to Islamic Learning Hub, a peaceful place to explore the beauty of Islam through the Quran and authentic Hadith"
+              ? "بناءً على القرآن الكريم والسنة الصحيحة"
+              : "Based on Qur'an and Sahih Sunnah"
             }
-          </p>
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.6 }}
+          >
+            <Button 
+              size="lg"
+              className="bg-secondary hover:bg-secondary/90 text-primary font-semibold px-8 py-6 text-lg shadow-glow animate-pulse"
+            >
+              {isArabic ? "استكشف الدورات" : "Explore Courses"}
+            </Button>
+          </motion.div>
         </motion.div>
       </section>
 
