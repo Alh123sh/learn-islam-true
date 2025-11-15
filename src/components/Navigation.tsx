@@ -22,6 +22,7 @@ const Navigation = () => {
     { to: "/hadith", label: isArabic ? "📚 ركن الحديث والسيرة" : "📚 Hadith Corner & Seerah", icon: "📚" },
     { to: "/duas", label: isArabic ? "🌤️ الأدعية والأذكار" : "🌤️ Duas & Adhkar", icon: "🌤️" },
     { to: "/wudu", label: isArabic ? "💧 الوضوء" : "💧 Wudu Tutorial", icon: "💧" },
+    { to: "/dashboard", label: isArabic ? "📊 لوحة التقدم" : "📊 Progress Dashboard", icon: "📊" },
   ];
 
   return (

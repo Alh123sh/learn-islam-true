@@ -17,6 +17,7 @@ import Duas from "./pages/Duas";
 import Quran from "./pages/Quran";
 import Hadith from "./pages/Hadith";
 import About from "./pages/About";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const App = () => (
               <Route path="/quran" element={<Quran />} />
               <Route path="/hadith" element={<Hadith />} />
               <Route path="/about" element={<About />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
                 </main>
