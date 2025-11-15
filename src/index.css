@@ -8,43 +8,43 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 40 60% 95%;
-    --foreground: 120 56% 23%;
+    --background: 44 50% 94%;
+    --foreground: 150 69% 19%;
 
     --card: 0 0% 100%;
-    --card-foreground: 120 56% 23%;
+    --card-foreground: 150 69% 19%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 120 56% 23%;
+    --popover-foreground: 150 69% 19%;
 
-    --primary: 120 56% 23%;
+    --primary: 150 69% 19%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 65% 53%;
-    --secondary-foreground: 120 56% 23%;
+    --secondary: 45 64% 52%;
+    --secondary-foreground: 150 69% 19%;
 
-    --muted: 40 50% 90%;
-    --muted-foreground: 120 30% 40%;
+    --muted: 44 40% 90%;
+    --muted-foreground: 150 30% 40%;
 
-    --accent: 174 55% 40%;
+    --accent: 175 55% 39%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 40 40% 85%;
-    --input: 40 40% 85%;
-    --ring: 120 56% 23%;
+    --border: 44 30% 85%;
+    --input: 44 30% 85%;
+    --ring: 150 69% 19%;
 
     --radius: 0.75rem;
     
     --islamic-pattern-opacity: 0.04;
-    --gradient-hero: linear-gradient(135deg, hsl(120 56% 23%) 0%, hsl(174 55% 40%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(40 60% 98%) 100%);
-    --gradient-gold: linear-gradient(135deg, hsl(45 65% 53%) 0%, hsl(45 75% 63%) 100%);
-    --shadow-soft: 0 4px 20px -2px hsl(120 56% 23% / 0.08);
-    --shadow-hover: 0 8px 30px -4px hsl(120 56% 23% / 0.15);
-    --shadow-glow: 0 0 30px hsl(45 65% 53% / 0.3);
+    --gradient-hero: linear-gradient(135deg, hsl(150 69% 19%) 0%, hsl(175 55% 39%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(44 50% 98%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45 64% 52%) 0%, hsl(45 74% 62%) 100%);
+    --shadow-soft: 0 4px 20px -2px hsl(150 69% 19% / 0.08);
+    --shadow-hover: 0 8px 30px -4px hsl(150 69% 19% / 0.15);
+    --shadow-glow: 0 0 30px hsl(45 64% 52% / 0.3);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
@@ -66,41 +66,41 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 210 60% 10%;
-    --foreground: 40 60% 95%;
+    --background: 211 61% 10%;
+    --foreground: 44 50% 94%;
 
-    --card: 210 55% 12%;
-    --card-foreground: 40 60% 95%;
+    --card: 211 55% 12%;
+    --card-foreground: 44 50% 94%;
 
-    --popover: 210 55% 12%;
-    --popover-foreground: 40 60% 95%;
+    --popover: 211 55% 12%;
+    --popover-foreground: 44 50% 94%;
 
-    --primary: 120 56% 35%;
+    --primary: 150 69% 25%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 65% 53%;
-    --secondary-foreground: 210 60% 10%;
+    --secondary: 45 64% 52%;
+    --secondary-foreground: 211 61% 10%;
 
-    --muted: 210 45% 18%;
-    --muted-foreground: 40 40% 70%;
+    --muted: 211 45% 18%;
+    --muted-foreground: 44 30% 70%;
 
-    --accent: 174 55% 45%;
+    --accent: 175 55% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 40% 20%;
-    --input: 210 40% 20%;
-    --ring: 120 56% 35%;
+    --border: 211 40% 20%;
+    --input: 211 40% 20%;
+    --ring: 150 69% 25%;
     
     --islamic-pattern-opacity: 0.06;
-    --gradient-hero: linear-gradient(135deg, hsl(120 56% 18%) 0%, hsl(174 55% 30%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(210 55% 12%) 0%, hsl(210 50% 15%) 100%);
-    --gradient-gold: linear-gradient(135deg, hsl(45 65% 48%) 0%, hsl(45 75% 58%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(150 69% 15%) 0%, hsl(175 55% 30%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(211 55% 12%) 0%, hsl(211 50% 15%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45 64% 48%) 0%, hsl(45 74% 58%) 100%);
     --shadow-soft: 0 4px 20px -2px hsl(0 0% 0% / 0.4);
     --shadow-hover: 0 8px 30px -4px hsl(0 0% 0% / 0.5);
-    --shadow-glow: 0 0 30px hsl(45 65% 53% / 0.2);
+    --shadow-glow: 0 0 30px hsl(45 64% 52% / 0.2);
   }
 }
 
