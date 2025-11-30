@@ -82,7 +82,7 @@ const Home = () => {
           >
             {isArabic 
               ? "بناءً على القرآن الكريم والسنة الصحيحة"
-              : "Based on Qur'an and Sahih Sunnah"
+              : "Based on Qur'an and Sahih Hadith"
             }
           </motion.p>
 
