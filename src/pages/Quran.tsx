@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Download, CheckCircle } from "lucide-react";
+import QuranMemorizationCalendar from "@/components/QuranMemorizationCalendar";
 
 const Quran = () => {
   const beginnerSurahs = [
@@ -49,6 +50,11 @@ const Quran = () => {
               تشمل الخطة اليومية: المراجعة، تفسير الآيات، جدول الحفظ، والدعاء بالتوفيق.
             </p>
           </Card>
+        </div>
+
+        {/* Memorization Calendar */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <QuranMemorizationCalendar />
         </div>
 
         {/* Tips Section */}
