@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import PWAInstallPrompt from "./components/PWAInstallPrompt";
@@ -18,6 +19,9 @@ import Quran from "./pages/Quran";
 import Hadith from "./pages/Hadith";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
+import Auth from "./pages/Auth";
+import StudentDashboard from "./pages/StudentDashboard";
+import TeacherDashboard from "./pages/TeacherDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,28 +34,33 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <div className="flex flex-col min-h-screen relative">
-              <ParticleBackground />
-              <IslamicPattern />
-              <div className="relative z-10 flex flex-col min-h-screen paper-texture">
-                <Navigation />
-                <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/salah" element={<Salah />} />
-              <Route path="/wudu" element={<Wudu />} />
-              <Route path="/duas" element={<Duas />} />
-              <Route path="/quran" element={<Quran />} />
-              <Route path="/hadith" element={<Hadith />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-                </main>
-                <Footer />
-                <PWAInstallPrompt />
+            <AuthProvider>
+              <div className="flex flex-col min-h-screen relative">
+                <ParticleBackground />
+                <IslamicPattern />
+                <div className="relative z-10 flex flex-col min-h-screen paper-texture">
+                  <Navigation />
+                  <main className="flex-1">
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/auth" element={<Auth />} />
+                      <Route path="/salah" element={<Salah />} />
+                      <Route path="/wudu" element={<Wudu />} />
+                      <Route path="/duas" element={<Duas />} />
+                      <Route path="/quran" element={<Quran />} />
+                      <Route path="/hadith" element={<Hadith />} />
+                      <Route path="/about" element={<About />} />
+                      <Route path="/dashboard" element={<Dashboard />} />
+                      <Route path="/student-dashboard" element={<StudentDashboard />} />
+                      <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </main>
+                  <Footer />
+                  <PWAInstallPrompt />
+                </div>
               </div>
-            </div>
+            </AuthProvider>
           </BrowserRouter>
         </TooltipProvider>
       </LanguageProvider>

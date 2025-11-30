@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -11,76 +11,196 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon, Clock, BookOpen, Save, Trash2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 interface MemorizationEntry {
+  id: string;
   date: string;
   pages: number;
-  timeMinutes: number;
+  time_minutes: number;
+  attendance: 'present' | 'absent' | 'partial';
+  notes: string | null;
 }
 
-const QuranMemorizationCalendar = () => {
+interface QuranMemorizationCalendarProps {
+  onUpdate?: () => void;
+}
+
+const QuranMemorizationCalendar = ({ onUpdate }: QuranMemorizationCalendarProps) => {
   const { isArabic } = useLanguage();
+  const { user } = useAuth();
+  const { toast } = useToast();
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [dialogOpen, setDialogOpen] = useState(false);
   const [pages, setPages] = useState("");
   const [timeMinutes, setTimeMinutes] = useState("");
-  
-  // Load entries from localStorage
-  const [entries, setEntries] = useState<Record<string, MemorizationEntry>>(() => {
-    const stored = localStorage.getItem("quran-memorization");
-    return stored ? JSON.parse(stored) : {};
-  });
+  const [attendance, setAttendance] = useState<'present' | 'absent' | 'partial'>('present');
+  const [notes, setNotes] = useState("");
+  const [entries, setEntries] = useState<Record<string, MemorizationEntry>>({});
+  const [loading, setLoading] = useState(false);
 
-  const saveEntry = () => {
-    if (!date || !pages || !timeMinutes) return;
-    
-    const dateKey = format(date, "yyyy-MM-dd");
-    const newEntries = {
-      ...entries,
-      [dateKey]: {
-        date: dateKey,
-        pages: parseFloat(pages),
-        timeMinutes: parseInt(timeMinutes),
-      },
-    };
-    
-    setEntries(newEntries);
-    localStorage.setItem("quran-memorization", JSON.stringify(newEntries));
-    setPages("");
-    setTimeMinutes("");
-    setDialogOpen(false);
+  useEffect(() => {
+    if (user) {
+      fetchEntries();
+    }
+  }, [user]);
+
+  const fetchEntries = async () => {
+    if (!user) return;
+
+    const { data, error } = await supabase
+      .from('memorization_entries')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('date', { ascending: false });
+
+    if (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to load memorization entries',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    const entriesMap = (data || []).reduce((acc, entry) => {
+      acc[entry.date] = entry;
+      return acc;
+    }, {} as Record<string, MemorizationEntry>);
+
+    setEntries(entriesMap);
   };
 
-  const deleteEntry = (dateKey: string) => {
-    const newEntries = { ...entries };
-    delete newEntries[dateKey];
-    setEntries(newEntries);
-    localStorage.setItem("quran-memorization", JSON.stringify(newEntries));
+  const saveEntry = async () => {
+    if (!date || !pages || !timeMinutes || !user) return;
+    
+    setLoading(true);
+    const dateKey = format(date, "yyyy-MM-dd");
+    
+    const { error } = await supabase
+      .from('memorization_entries')
+      .upsert({
+        user_id: user.id,
+        date: dateKey,
+        pages: parseFloat(pages),
+        time_minutes: parseInt(timeMinutes),
+        attendance,
+        notes: notes || null,
+      });
+    
+    if (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to save entry',
+        variant: 'destructive',
+      });
+      setLoading(false);
+      return;
+    }
+
+    toast({
+      title: 'Success',
+      description: 'Memorization entry saved!',
+    });
+
+    await fetchEntries();
+    onUpdate?.();
+    setPages("");
+    setTimeMinutes("");
+    setAttendance('present');
+    setNotes("");
+    setDialogOpen(false);
+    setLoading(false);
+  };
+
+  const deleteEntry = async (dateKey: string) => {
+    const entry = entries[dateKey];
+    if (!entry) return;
+
+    const { error } = await supabase
+      .from('memorization_entries')
+      .delete()
+      .eq('id', entry.id);
+
+    if (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to delete entry',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    toast({
+      title: 'Success',
+      description: 'Entry deleted',
+    });
+
+    await fetchEntries();
+    onUpdate?.();
   };
 
   const selectedEntry = date ? entries[format(date, "yyyy-MM-dd")] : null;
 
-  const totalPages = Object.values(entries).reduce((sum, entry) => sum + entry.pages, 0);
-  const totalMinutes = Object.values(entries).reduce((sum, entry) => sum + entry.timeMinutes, 0);
+  const totalPages = Object.values(entries).reduce((sum, entry) => sum + Number(entry.pages), 0);
+  const totalMinutes = Object.values(entries).reduce((sum, entry) => sum + entry.time_minutes, 0);
   const totalDays = Object.keys(entries).length;
 
-  // Custom day content to show attendance markers
   const modifiers = {
-    attended: Object.keys(entries).map(dateStr => new Date(dateStr)),
+    present: Object.entries(entries)
+      .filter(([_, entry]) => entry.attendance === 'present')
+      .map(([dateStr]) => new Date(dateStr)),
+    absent: Object.entries(entries)
+      .filter(([_, entry]) => entry.attendance === 'absent')
+      .map(([dateStr]) => new Date(dateStr)),
+    partial: Object.entries(entries)
+      .filter(([_, entry]) => entry.attendance === 'partial')
+      .map(([dateStr]) => new Date(dateStr)),
   };
 
   const modifiersStyles = {
-    attended: {
-      backgroundColor: "hsl(var(--primary))",
-      color: "hsl(var(--primary-foreground))",
+    present: {
+      backgroundColor: "rgb(34, 197, 94)",
+      color: "white",
       fontWeight: "bold",
     },
+    absent: {
+      backgroundColor: "rgb(239, 68, 68)",
+      color: "white",
+      fontWeight: "bold",
+    },
+    partial: {
+      backgroundColor: "rgb(234, 179, 8)",
+      color: "white",
+      fontWeight: "bold",
+    },
+  };
+
+  const getAttendanceBadgeColor = (attendance: 'present' | 'absent' | 'partial') => {
+    switch (attendance) {
+      case 'present':
+        return 'bg-green-500 hover:bg-green-600';
+      case 'absent':
+        return 'bg-red-500 hover:bg-red-600';
+      case 'partial':
+        return 'bg-yellow-500 hover:bg-yellow-600';
+    }
   };
 
   return (
@@ -155,13 +275,49 @@ const QuranMemorizationCalendar = () => {
                   />
                 </div>
 
+                <div>
+                  <Label htmlFor="attendance">
+                    {isArabic ? "الحضور" : "Attendance"}
+                  </Label>
+                  <Select value={attendance} onValueChange={(value: any) => setAttendance(value)}>
+                    <SelectTrigger className="mt-2">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="present">
+                        🟢 {isArabic ? "حاضر" : "Present"}
+                      </SelectItem>
+                      <SelectItem value="partial">
+                        🟡 {isArabic ? "جزئي" : "Partial"}
+                      </SelectItem>
+                      <SelectItem value="absent">
+                        🔴 {isArabic ? "غائب" : "Absent"}
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div>
+                  <Label htmlFor="notes">
+                    {isArabic ? "ملاحظات" : "Notes (optional)"}
+                  </Label>
+                  <Textarea
+                    id="notes"
+                    placeholder={isArabic ? "أضف ملاحظاتك هنا..." : "Add your notes here..."}
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    className="mt-2"
+                    rows={3}
+                  />
+                </div>
+
                 <Button 
                   onClick={saveEntry} 
                   className="w-full gap-2"
-                  disabled={!pages || !timeMinutes}
+                  disabled={!pages || !timeMinutes || loading}
                 >
                   <Save className="h-4 w-4" />
-                  {isArabic ? "حفظ" : "Save Entry"}
+                  {loading ? (isArabic ? "جاري الحفظ..." : "Saving...") : (isArabic ? "حفظ" : "Save Entry")}
                 </Button>
               </div>
             </DialogContent>
@@ -257,6 +413,14 @@ const QuranMemorizationCalendar = () => {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">
+                    {isArabic ? "الحضور:" : "Attendance:"}
+                  </span>
+                  <Badge className={getAttendanceBadgeColor(selectedEntry.attendance)}>
+                    {selectedEntry.attendance === 'present' ? '🟢' : selectedEntry.attendance === 'partial' ? '🟡' : '🔴'} {selectedEntry.attendance.toUpperCase()}
+                  </Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">
                     {isArabic ? "الصفحات:" : "Pages:"}
                   </span>
                   <Badge variant="secondary">{selectedEntry.pages}</Badge>
@@ -265,8 +429,18 @@ const QuranMemorizationCalendar = () => {
                   <span className="text-sm text-muted-foreground">
                     {isArabic ? "الوقت:" : "Time:"}
                   </span>
-                  <Badge variant="secondary">{selectedEntry.timeMinutes} {isArabic ? "دقيقة" : "min"}</Badge>
+                  <Badge variant="secondary">{selectedEntry.time_minutes} {isArabic ? "دقيقة" : "min"}</Badge>
                 </div>
+                {selectedEntry.notes && (
+                  <div>
+                    <span className="text-sm text-muted-foreground">
+                      {isArabic ? "ملاحظات:" : "Notes:"}
+                    </span>
+                    <p className="text-sm mt-1 p-2 bg-muted rounded">
+                      {selectedEntry.notes}
+                    </p>
+                  </div>
+                )}
               </div>
             </Card>
           </motion.div>
@@ -303,7 +477,10 @@ const QuranMemorizationCalendar = () => {
                         </Badge>
                         <Badge variant="outline" className="gap-1">
                           <Clock className="h-3 w-3" />
-                          {entry.timeMinutes}m
+                          {entry.time_minutes}m
+                        </Badge>
+                        <Badge className={getAttendanceBadgeColor(entry.attendance)}>
+                          {entry.attendance === 'present' ? '🟢' : entry.attendance === 'partial' ? '🟡' : '🔴'}
                         </Badge>
                       </div>
                     </div>

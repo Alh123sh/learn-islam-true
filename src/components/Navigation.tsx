@@ -1,20 +1,23 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Menu, X, ChevronDown } from "lucide-react";
+import { BookOpen, Menu, X, ChevronDown, LogOut, User } from "lucide-react";
 import { useState } from "react";
 import LanguageToggle from "./LanguageToggle";
 import ThemeToggle from "./ThemeToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isArabic } = useLanguage();
+  const { user, userRole, signOut } = useAuth();
 
   const courseLinks = [
     { to: "/salah", label: isArabic ? "🕌 تعلم الصلاة والطهارة" : "🕌 Learn Salah & Purification", icon: "🕌" },
@@ -75,9 +78,42 @@ const Navigation = () => {
               <LanguageToggle />
             </div>
             
-            <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity shadow-md">
-              {isArabic ? "استكشف الدورات" : "Explore Courses"}
-            </Button>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="gap-2">
+                    <User className="h-4 w-4" />
+                    {isArabic ? "حسابي" : "Account"}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  {userRole === 'teacher' || userRole === 'admin' ? (
+                    <DropdownMenuItem asChild>
+                      <Link to="/teacher-dashboard">
+                        {isArabic ? "لوحة المعلم" : "Teacher Dashboard"}
+                      </Link>
+                    </DropdownMenuItem>
+                  ) : (
+                    <DropdownMenuItem asChild>
+                      <Link to="/student-dashboard">
+                        {isArabic ? "لوحة الطالب" : "My Dashboard"}
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={signOut} className="text-destructive">
+                    <LogOut className="h-4 w-4 mr-2" />
+                    {isArabic ? "تسجيل الخروج" : "Sign Out"}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button asChild className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity shadow-md">
+                <Link to="/auth">
+                  {isArabic ? "تسجيل الدخول" : "Sign In"}
+                </Link>
+              </Button>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
